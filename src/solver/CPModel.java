@@ -55,8 +55,8 @@ public class CPModel {
         Model model = new Model("FSO Clustering Constraint Model");
 
         this.NFSO = 50;
-        int minNHAP = Math.max(10, 0);
-        int maxNHAP = Math.min(10, NFSO);
+        int minNHAP = Math.max(3, 0);
+        int maxNHAP = Math.min(3, NFSO);
         NHAP = model.intVar("NHAP", minNHAP, maxNHAP);
 
         X = new IntVar[maxNHAP];
@@ -188,6 +188,7 @@ public class CPModel {
         bw = 1024;
         R = 8;
         L = 40;
+        NFSO = 10;
     }
 
     public static void main(String[] args) {
