@@ -13,7 +13,7 @@ public class CoverDisk {
         CoverDisk d = new CoverDisk("gfso_413_01");
         d.readInput();
         HashSet<Location> locationSet = d.listLocation();
-        d.integerLinearProgramming2(locationSet);
+        d.integerLinearProgramming(locationSet);
     }
 
     private String dataName;
@@ -57,7 +57,7 @@ public class CoverDisk {
 
             IntVar tmp = model.intVar(0, NT);
             model.sum(c[iL], "=", tmp).post();
-            model.arithm(ns[iL], "*", model.intVar(W, W), ">=", tmp).post();
+            model.arithm(model.intScaleView(ns[iL], W), ">=", tmp).post();
 
             iL++;
         }
@@ -67,12 +67,12 @@ public class CoverDisk {
             for (iL = 0; iL < NL; iL++) {
                 ct[iL] = c[iL][iT];
             }
-            model.sum(ct, "=", model.intVar(1, 1)).post();
+            model.sum(ct, "=", 1).post();
         }
 
         IntVar objective = model.intVar(0, NT);
         model.sum(ns, "=", objective).post();
-        model.arithm(objective, "<", 11).post();
+//        model.arithm(objective, "<", 11).post();
         model.setObjective(model.MINIMIZE, objective);
 
         FileWriter writer = new FileWriter("./data/gfso_" + dataName);

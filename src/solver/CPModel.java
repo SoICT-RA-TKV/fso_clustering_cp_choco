@@ -154,7 +154,7 @@ public class CPModel {
     }
 
     public void readInput() throws FileNotFoundException {
-        FileInputStream f = new FileInputStream("./data/input.txt");
+        FileInputStream f = new FileInputStream("./data/gfso_50_01");
         Scanner s = new Scanner(f);
         while (!s.hasNextInt()) {
             s.next();
